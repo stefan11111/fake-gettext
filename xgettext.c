@@ -48,7 +48,7 @@ int main(int argc, char **argv)
             }
             memcpy(path, *p + sizeof("--default-domain=") - 1, len);
             memcpy(path + len, ".po", sizeof(".po"));
-            (void)!fopen(dst, "w");
+            (void)!fopen(path, "w");
             return 0;
         }
     }
