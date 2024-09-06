@@ -1,8 +1,15 @@
-..POSIX:
+.POSIX:
 
 all:
 	${CC} ${CFLAGS}  gettext_program.c -o gettext_program
 	${CC} ${CFLAGS}  gettext.c -o gettext
+	${CC} ${CFLAGS}  xgettext.c -o xgettext
+	${CC} ${CFLAGS} -fPIC -nostdlib libgettextpo.c -o libgettextpo.so.0.5.10 ${LDFLAGS} -shared -Wl,-soname,libgettextpo.so.0
+
+minimal:
+	${CC} ${CFLAGS} -DJUST_TOUCH_FILES gettext_program.c -o gettext_program
+	${CC} ${CFLAGS}  gettext.c -o gettext
+	${CC} ${CFLAGS}  xgettext.c -o xgettext
 	${CC} ${CFLAGS}  xgettext.c -o xgettext
 	${CC} ${CFLAGS} -fPIC -nostdlib libgettextpo.c -o libgettextpo.so.0.5.10 ${LDFLAGS} -shared -Wl,-soname,libgettextpo.so.0
 
