@@ -14,6 +14,7 @@ minimal:
 	${CC} ${CFLAGS} -fPIC -nostdlib libgettextpo.c -o libgettextpo.so.0.5.10 ${LDFLAGS} -shared -Wl,-soname,libgettextpo.so.0
 
 install:
+	mkdir -p ${DESTDIR}/usr/bin
 	cp -f gettext_program ${DESTDIR}/usr/bin/msgmerge
 	cp -f gettext_program ${DESTDIR}/usr/bin/msgfmt
 	ln -rsf ${DESTDIR}/usr/bin/msgfmt ${DESTDIR}/usr/bin/gmsgfmt
