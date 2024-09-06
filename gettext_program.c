@@ -11,7 +11,7 @@ int main(int argc, char **argv)
         return 0;
     }
 
-    if(argc == 2 && !strncmp(argv[1], "--version", sizeof("--version") - 1)) {
+    if(argc == 2 && !memcmp(argv[1], "--version", sizeof("--version") - 1)) {
         printf("%s (GNU gettext-tools) 0.22.4\n", argv[0]);
         return 0;
     }
@@ -22,13 +22,13 @@ int main(int argc, char **argv)
     FILE *g = NULL;
     char **output_idx = NULL;
     for(char **p = argv; *p; p++) {
-        if (!strncmp(*p, "-o", sizeof("-o") - 1)) {
+        if (!memcmp(*p, "-o", sizeof("-o") - 1)) {
             g = FOPEN_OR_STD (*(p + 1), "w", stdout);
             output_idx = p + 1;
             break;
         }
 
-        if (!strncmp(*p, "--output-file=", sizeof("--output-file=") - 1)) {
+        if (!memcmp(*p, "--output-file=", sizeof("--output-file=") - 1)) {
             g = FOPEN_OR_STD (*p + sizeof("--output-file=") - 1, "w", stdout);
             output_idx = p;
             break;
@@ -42,7 +42,7 @@ int main(int argc, char **argv)
     FILE *f = NULL;
 
     for(char **p = argv; *p; p++) {
-        if (!strncmp(*p, "--template", sizeof("--template") - 1)) {
+        if (!memcmp(*p, "--template", sizeof("--template") - 1)) {
             f = fopen(*p + sizeof("--template=") - 1, "r");
         }
     }
@@ -85,14 +85,14 @@ int main(int argc, char **argv)
     }
 #else
     for(char **p = argv; *p; p++) {
-        if (!strncmp(*p, "-o", sizeof("-o") - 1)) {
+        if (!memcmp(*p, "-o", sizeof("-o") - 1)) {
             if (CHECK_FOR_NOT_STD(*(p + 1))) {
                 (void)!fopen(*(p + 1), "w");
             }
             return 0;
         }
 
-        if (!strncmp(*p, "--output-file=", sizeof("--output-file=") - 1)) {
+        if (!memcmp(*p, "--output-file=", sizeof("--output-file=") - 1)) {
             if (CHECK_FOR_NOT_STD(*p + sizeof("--output-file=") - 1)) {
                 (void)!fopen(*p + sizeof("--output-file=") - 1, "w");
             }
