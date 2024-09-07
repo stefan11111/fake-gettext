@@ -18,12 +18,12 @@ int main(int argc, char **argv)
     for(char **p = argv; *p; p++) {
         if (!memcmp(*p, "-o", sizeof("-o") - 1)) {
             p++;
-            (void)!fopen(*p, "w");
+            fopen(*p, "w");
             return 0;
         }
 
         if (!memcmp(*p, "--output-file=", sizeof("--output-file=") - 1)) {
-            (void)!fopen(*p + sizeof("--output-file=") - 1, "w");
+            fopen(*p + sizeof("--output-file=") - 1, "w");
             return 0;
         }
 
@@ -36,7 +36,7 @@ int main(int argc, char **argv)
             }
             memcpy(path, *p, len);
             memcpy(path + len, ".po", sizeof(".po"));
-            (void)!fopen(path, "w");
+            fopen(path, "w");
             return 0;
         }
 
@@ -48,11 +48,11 @@ int main(int argc, char **argv)
             }
             memcpy(path, *p + sizeof("--default-domain=") - 1, len);
             memcpy(path + len, ".po", sizeof(".po"));
-            (void)!fopen(path, "w");
+            fopen(path, "w");
             return 0;
         }
     }
 
-    (void)!fopen("messages.po", "w");
+    fopen("messages.po", "w");
     return 0;
 }

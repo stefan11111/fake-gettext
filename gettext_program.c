@@ -87,14 +87,14 @@ int main(int argc, char **argv)
     for(char **p = argv; *p; p++) {
         if (!memcmp(*p, "-o", sizeof("-o") - 1)) {
             if (CHECK_FOR_NOT_STD(*(p + 1))) {
-                (void)!fopen(*(p + 1), "w");
+                fopen(*(p + 1), "w");
             }
             return 0;
         }
 
         if (!memcmp(*p, "--output-file=", sizeof("--output-file=") - 1)) {
             if (CHECK_FOR_NOT_STD(*p + sizeof("--output-file=") - 1)) {
-                (void)!fopen(*p + sizeof("--output-file=") - 1, "w");
+                fopen(*p + sizeof("--output-file=") - 1, "w");
             }
             return 0;
         }
